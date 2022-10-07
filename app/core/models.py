@@ -2,9 +2,6 @@
 Database models.
 """
 
-from email.policy import default
-from enum import unique
-from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser,
@@ -15,14 +12,13 @@ from django.contrib.auth.models import (
 
 class UserManager(BaseUserManager):
 
-        def create_user(self, email, password=None, **extra_fields):
-            """Create save and return a new user."""
-            user = self.model(email=email, **extra_fields)
-            user.set_password(password)
-            user.save(using=self._db)
+    def create_user(self, email, password=None, **extra_fields):
+        """Create save and return a new user."""
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
 
-            return user
-
+        return user
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -34,6 +30,4 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-
     USERNAME_FIELD = 'email'
-
