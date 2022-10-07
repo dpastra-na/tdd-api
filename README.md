@@ -1,2 +1,2 @@
-# tdd-api
-Toy Django project to practice TDD
+# TDD-API
+Toy Django project to show Test-Driven Developement
